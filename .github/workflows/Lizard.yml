@@ -1,0 +1,31 @@
+name: Generate Lizard Contributions
+
+on:
+  schedule:
+    - cron: "0 0 * * *"   # todos los días
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Generate lizard
+        uses: carlosbravo1408/Lizard@v1
+        with:
+          user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/contribution_map_animation_light.svg
+            dist/contribution_map_animation_dark.svg
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit and push SVG
+        uses: crazy-max/ghaction-github-pages@v3.1.0
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
