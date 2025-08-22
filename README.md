@@ -1,5 +1,13 @@
 ## Hi there 👋
 
+<p align="center">
+  <picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/bravecharles/bravecharles/output/contribution_map_animation_dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/bravecharles/bravecharles/output/contribution_map_animation_light.svg">
+  <img alt="github-Lizard" src="github-lizard.svg" />
+</picture>
+</p>
+
 <!--
 **bravecharles/bravecharles** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 
