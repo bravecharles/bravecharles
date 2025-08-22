@@ -1,26 +1,30 @@
-name: Generate Lizard Contributions
+name: generate contribution SVGs
 
 on:
   schedule:
-    - cron: "0 0 * * *"   # todos los días
+    - cron: "0 0 * * *"  # each 24 hours
   workflow_dispatch:
+  push:
+    branches:
+      - main
 
 jobs:
   generate:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
       - name: Generate lizard
-        uses: carlosbravo1408/Lizard/.github/actions/action.yml@v1
+        uses: carlosbravo1408/Lizard@main
         with:
           user_name: ${{ github.repository_owner }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           outputs: |
             dist/contribution_map_animation_light.svg
             dist/contribution_map_animation_dark.svg
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit and push SVG
         uses: crazy-max/ghaction-github-pages@v3.1.0
